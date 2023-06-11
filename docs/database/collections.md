@@ -7,6 +7,7 @@ Plans for the collections in the database. If the design is updated here, it sho
 ```json
 "users": [
     {
+        "id": "string",
         "profile": {
             "username": "string",
             "password": "string"
