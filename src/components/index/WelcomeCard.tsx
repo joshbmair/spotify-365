@@ -10,7 +10,7 @@ export default function WelcomeCard(): JSX.Element {
           <Card.Title>Spotify 365</Card.Title>
           <Card.Text>
             Have you ever wanted to see your top artists, genres, and songs but
-            had to wait until this year's Spotify wrapped comes out? With
+            had to wait until this year{"'"}s Spotify wrapped comes out? With
             Spotify 365, you can uses the to see the same results at any time on
             any day using the{" "}
             <a href="https://developer.spotify.com/documentation/web-api">
