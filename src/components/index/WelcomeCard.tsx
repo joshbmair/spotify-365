@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 import styles from "./welcome-card.module.css";
 
@@ -18,6 +18,7 @@ export default function WelcomeCard(): JSX.Element {
             </a>
             .
           </Card.Text>
+          <Button href="/results">Try it out</Button>
         </Card.Body>
       </Card>
     </div>
