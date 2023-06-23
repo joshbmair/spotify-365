@@ -5,13 +5,12 @@ Plans for the collections in the database. If the design is updated here, it sho
 ## Users
 
 ```json
-"users": [
-    {
-        "id": "string",
+"users": {
+    "[user-id]": {
         "profile": {
             "username": "string",
             "password": "string"
         }
-    },
-]
+    }
+}
 ```
