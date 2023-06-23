@@ -1,15 +1,10 @@
-import Head from "next/head";
-
+import PageLayout from "@/components/PageLayout";
 import WelcomeCard from "@/components/index/WelcomeCard";
-import { SITE_TITLE } from "@/lib/constants";
 
 export default function Home(): JSX.Element {
   return (
-    <>
-      <Head>
-        <title>{SITE_TITLE} - Home</title>
-      </Head>
+    <PageLayout siteSubtitle="Home">
       <WelcomeCard />
-    </>
+    </PageLayout>
   );
 }
