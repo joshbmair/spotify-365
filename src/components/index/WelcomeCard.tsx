@@ -1,8 +1,12 @@
-import { Card } from "react-bootstrap";
-
+import { Button, Card } from "react-bootstrap";
+import { BASE_URL, CLIENT_ID } from "@/lib/constants";
+import { generateCodeChallenge } from "@/lib/authorization";
+import { randomBytes } from "crypto";
 import styles from "./welcome-card.module.css";
 
 export default function WelcomeCard(): JSX.Element {
+  const authorizationUrl: string = generateAuthorizationUrl();
+
   return (
     <div className={styles.content}>
       <Card>
@@ -18,8 +22,23 @@ export default function WelcomeCard(): JSX.Element {
             </a>
             .
           </Card.Text>
+          <Button href={authorizationUrl}>Try it out</Button>
         </Card.Body>
       </Card>
     </div>
   );
+}
+
+function generateAuthorizationUrl(): string {
+  const params = new URLSearchParams({
+    response_type: "code",
+    client_id: CLIENT_ID,
+    scope: "user-top-read",
+    redirect_uri: `${BASE_URL}/results`,
+    state: randomBytes(16).toString("base64"),
+    code_challenge_method: "S256",
+    code_challenge: generateCodeChallenge(),
+  });
+
+  return `https://accounts.spotify.com/authorize?${params}`;
 }
