@@ -2,6 +2,9 @@ import { createHash, randomBytes } from "crypto";
 
 export function generateCodeChallenge(): string {
   const codeVerifier: string = base64URLEncode(randomBytes(128));
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem("code_verifier", codeVerifier);
+  }
   return base64URLEncode(sha256(codeVerifier));
 }
 
