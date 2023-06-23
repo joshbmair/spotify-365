@@ -1,4 +1,4 @@
-import PageLayout from "@/components/PageLayout.tsx";
+import PageLayout from "@/components/PageLayout";
 
 export default function Results(): JSX.Element {
   return (
