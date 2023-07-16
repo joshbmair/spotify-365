@@ -1,4 +1,4 @@
-import { CLIENT_ID } from "./constants";
+import { CLIENT_ID, SPOTIFY_API_BASE_URL } from "./constants";
 
 export async function getAccessToken(code: string): Promise<string> {
   const params: URLSearchParams = new URLSearchParams();
@@ -16,4 +16,20 @@ export async function getAccessToken(code: string): Promise<string> {
 
   const { access_token } = await result.json();
   return access_token;
+}
+
+export async function getTopArtists(token: string): Promise<string> {
+  return await getTopItem(token, "artists");
+}
+
+export async function getTopTracks(token: string): Promise<string> {
+  return await getTopItem(token, "tracks");
+}
+
+export async function getTopItem(token: string, item: string): Promise<string> {
+  const result = await fetch(`${SPOTIFY_API_BASE_URL}/me/top/${item}`, {
+    method: "GET",
+    headers: { Authorization: `"Bearer" ${token}` },
+  });
+  return result.json();
 }
