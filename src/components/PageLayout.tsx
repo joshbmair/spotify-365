@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 
+import styles from "./page-layout.module.css";
 import { SITE_TITLE } from "@/lib/constants";
 
 interface Props {
@@ -18,7 +19,7 @@ export default function PageLayout(props: Props): JSX.Element {
           {SITE_TITLE} - {siteSubtitle}
         </title>
       </Head>
-      {children}
+      <div className={styles.page}>{children}</div>
     </>
   );
 }
