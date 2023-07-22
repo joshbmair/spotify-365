@@ -1,11 +1,27 @@
-import { createHash, randomBytes } from "crypto";
+import { createHash } from "crypto";
 
 export function generateCodeChallenge(): string {
-  const codeVerifier: string = base64URLEncode(randomBytes(128));
+  const codeVerifier: string = generateCodeVerifier(128);
+
   if (typeof window !== "undefined") {
     window.localStorage.setItem("code_verifier", codeVerifier);
   }
+
   return base64URLEncode(sha256(codeVerifier));
+}
+
+function generateCodeVerifier(length: number) {
+  let codeVerifier: string = "";
+  let possible: string =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (let i = 0; i < length; i++) {
+    codeVerifier += possible.charAt(
+      Math.floor(Math.random() * possible.length)
+    );
+  }
+
+  return codeVerifier;
 }
 
 function base64URLEncode(buffer: Buffer): string {
