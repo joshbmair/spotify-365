@@ -33,5 +33,6 @@ function base64URLEncode(buffer: Buffer): string {
 }
 
 function sha256(text: string): Buffer {
-  return createHash("sha256").update(text).digest();
+  const data: Uint8Array = new TextEncoder().encode(text);
+  return createHash("sha256").update(data).digest();
 }

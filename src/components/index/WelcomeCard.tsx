@@ -1,10 +1,17 @@
+import { randomBytes } from "crypto";
+import { useEffect, useState } from "react";
+
 import { Button, Card } from "react-bootstrap";
 import { BASE_URL, CLIENT_ID } from "@/lib/constants";
 import { generateCodeChallenge } from "@/lib/authorization";
-import { randomBytes } from "crypto";
 
 export default function WelcomeCard(): JSX.Element {
-  const authorizationUrl: string = generateAuthorizationUrl();
+  const [authorizationUrl, setAuthorizationUrl] = useState<string>("");
+
+  useEffect(() => {
+    console.log("Setting auth URL");
+    setAuthorizationUrl(generateAuthorizationUrl());
+  }, []);
 
   return (
     <Card>
