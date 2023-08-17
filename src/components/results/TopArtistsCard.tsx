@@ -6,5 +6,5 @@ interface Props {
 }
 
 export default function TopArtistsCard(props: Props): JSX.Element {
-  return <TopItemsCard items={props.artists} />;
+  return <TopItemsCard items={props.artists} itemType="Artist" />;
 }

@@ -5,10 +5,11 @@ import { ItemList } from "@/lib/types";
 
 interface Props {
   items: ItemList;
+  itemType: string;
 }
 
 export default function TopItemsCard(props: Props): JSX.Element {
-  const { items } = props;
+  const { items, itemType } = props;
   const [itemList, setItemList] = useState<string[]>([]);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function TopItemsCard(props: Props): JSX.Element {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Top Items</Card.Title>
+        <Card.Title>Top {itemType}s</Card.Title>
         {itemList.length > 0 ? (
           <ol>
             {itemList.map((item, index) => {
@@ -26,7 +27,7 @@ export default function TopItemsCard(props: Props): JSX.Element {
             })}
           </ol>
         ) : (
-          "Loading items..."
+          `Loading ${itemType}s...`
         )}
       </Card.Body>
     </Card>
