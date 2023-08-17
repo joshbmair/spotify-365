@@ -1,4 +1,5 @@
 import { BASE_URL, CLIENT_ID, SPOTIFY_API_BASE_URL } from "./constants";
+import { ArtistList, ItemList, TrackList } from "./types";
 
 export async function getAccessToken(code: string): Promise<string> {
   const params: URLSearchParams = new URLSearchParams();
@@ -18,15 +19,15 @@ export async function getAccessToken(code: string): Promise<string> {
   return access_token;
 }
 
-export async function getTopArtists(token: string): Promise<string> {
+export async function getTopArtists(token: string): Promise<ArtistList> {
   return await getTopItem(token, "artists");
 }
 
-export async function getTopTracks(token: string): Promise<string> {
+export async function getTopTracks(token: string): Promise<TrackList> {
   return await getTopItem(token, "tracks");
 }
 
-export async function getTopItem(token: string, item: string): Promise<string> {
+export async function getTopItem(token: string, item: string): Promise<ItemList> {
   const result = await fetch(`${SPOTIFY_API_BASE_URL}/me/top/${item}`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
