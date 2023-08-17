@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 
-import { Item, ItemList } from "@/lib/types";
+import { ItemList } from "@/lib/types";
 
 interface Props {
   items: ItemList;
@@ -33,11 +33,18 @@ export default function TopItemsCard(props: Props): JSX.Element {
   );
 }
 
-function getItemList(items: ItemList): string[] {
-  if (!items.items) {
+function getItemList(topItems: ItemList): string[] {
+  if (!topItems.items) {
     return [];
   }
-  return items.items.map((item: Item) => {
-    return item.name;
-  });
+
+  let itemList: string[] = [];
+  for (let i: number = 0; i < topItems.items.length; i++) {
+    if (i > 4) {
+      break;
+    }
+    itemList.push(topItems.items[i].name);
+  }
+
+  return itemList;
 }
