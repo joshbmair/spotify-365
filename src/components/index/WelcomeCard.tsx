@@ -9,7 +9,6 @@ export default function WelcomeCard(): JSX.Element {
   const [authorizationUrl, setAuthorizationUrl] = useState<string>("");
 
   useEffect(() => {
-    console.log("Setting auth URL");
     setAuthorizationUrl(generateAuthorizationUrl());
   }, []);
 
