@@ -1,3 +1,9 @@
 .page {
-  margin: 5% 10% 5% 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  margin: 5%;
+  width: 400px;
 }

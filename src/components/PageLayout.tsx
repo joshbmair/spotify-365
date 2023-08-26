@@ -18,7 +18,9 @@ export default function PageLayout(props: Props): JSX.Element {
       <Head>
         <title>{pageTitle}</title>
       </Head>
-      <div className={styles.page}>{children}</div>
+      <div className={styles.page}>
+        <div className={styles.content}>{children}</div>
+      </div>
     </>
   );
 }
