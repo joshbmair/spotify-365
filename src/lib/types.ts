@@ -1,13 +1,29 @@
+export interface Album {
+  images: Image[];
+}
+
+export interface Artist extends Item {
+  images: Image[];
+}
+
+export type ArtistList = ItemList;
+
+export interface Image {
+  height: number;
+  url: string;
+  width: string;
+}
+
 export interface Item {
   name: string;
 }
-
-export type Artist = Item;
-export type ArtistList = ItemList;
 
 export interface ItemList {
   items: Item[];
 }
 
-export type Track = Item;
+export interface Track extends Item {
+  album: Album;
+}
+
 export type TrackList = ItemList;
