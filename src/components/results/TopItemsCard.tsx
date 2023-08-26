@@ -13,6 +13,12 @@ export default function TopItemsCard(props: Props): JSX.Element {
   const [itemList, setItemList] = useState<string[]>([]);
 
   useEffect(() => {
+    if (!items.items) {
+      return;
+    } else if (items.items.length === 0) {
+      return;
+    }
+
     setItemList(getItemList(items));
   }, [items]);
 
@@ -35,10 +41,6 @@ export default function TopItemsCard(props: Props): JSX.Element {
 }
 
 function getItemList(topItems: ItemList): string[] {
-  if (!topItems.items) {
-    return [];
-  }
-
   let itemList: string[] = [];
   for (let i: number = 0; i < topItems.items.length; i++) {
     if (i > 4) {
