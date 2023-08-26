@@ -11,14 +11,12 @@ interface Props {
 
 export default function PageLayout(props: Props): JSX.Element {
   const { children, siteSubtitle } = props;
-  const pageTitle = `${SITE_TITLE} - ${siteSubtitle}`
+  const pageTitle: string = `${SITE_TITLE} - ${siteSubtitle}`;
 
   return (
     <>
       <Head>
-        <title>
-          {pageTitle}
-        </title>
+        <title>{pageTitle}</title>
       </Head>
       <div className={styles.page}>{children}</div>
     </>
