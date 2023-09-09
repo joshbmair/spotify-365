@@ -17,6 +17,10 @@ export default function Results(): JSX.Element {
     const code: string = urlParams.get("code")!;
 
     getAccessToken(code).then((token) => {
+      if (token === "") {
+        return;
+      }
+
       getTopArtists(token).then((artists) => setTopArtists(artists));
       getTopTracks(token).then((tracks) => setTopTracks(tracks));
     });
