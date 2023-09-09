@@ -1,7 +1,6 @@
-import { Card } from "react-bootstrap";
-
 import { Artist, Image } from "@/lib/types";
-import styles from "./top-items.module.css";
+import { getLargestImage } from "./helpers";
+import TopItemsCard, { TopItemsProps } from "./TopItemsCard";
 
 interface Props {
   artists: Artist[];
@@ -9,29 +8,12 @@ interface Props {
 
 export default function TopArtistsCard(props: Props): JSX.Element {
   const { artists } = props;
-  const topArtistImage = getLargestImage(artists[0].images);
+  const topArtistImage: Image = getLargestImage(artists[0].images);
+  const topItemsProps: TopItemsProps = {
+    items: artists,
+    title: "Top Artists",
+    topItemImage: topArtistImage,
+  };
 
-  return (
-    <Card>
-      <Card.Body>
-        <Card.Title>Top Artists</Card.Title>
-        <Card.Text>
-          <img className={styles.image} src={topArtistImage.url} />
-          <ol>
-            {artists.slice(0, 5).map((artist, index) => {
-              return <li key={index}>{artist.name}</li>;
-            })}
-          </ol>
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  );
-}
-
-function getLargestImage(images: Image[]): Image {
-  return images.sort(descendingImageSizeOrder)[0];
-}
-
-function descendingImageSizeOrder(image1: Image, image2: Image): number {
-  return image2.height - image1.height;
+  return <TopItemsCard {...topItemsProps} />;
 }
