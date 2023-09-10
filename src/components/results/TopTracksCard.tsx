@@ -11,7 +11,7 @@ export default function TracksCard(props: Props): JSX.Element {
   const topTrackImage: Image = getLargestImage(tracks[0].album.images);
   const topItemsProps: TopItemsProps = {
     items: tracks,
-    title: "Top Artists",
+    title: "Top Tracks",
     topItemImage: topTrackImage,
   };
 

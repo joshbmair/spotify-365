@@ -32,9 +32,9 @@ export default function Results(): JSX.Element {
 
   return (
     <PageLayout siteSubtitle="Results">
-      {topArtists.length > 0 && <TopArtistsCard artists={topArtists} />}
-      <br />
       {topTracks.length > 0 && <TopTracksCard tracks={topTracks} />}
+      <br />
+      {topArtists.length > 0 && <TopArtistsCard artists={topArtists} />}
     </PageLayout>
   );
 }
