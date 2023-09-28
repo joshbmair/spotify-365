@@ -1,5 +1,5 @@
 import { BASE_URL, CLIENT_ID, SPOTIFY_API_BASE_URL } from "./constants";
-import { ArtistList, ItemList, TrackList } from "./types";
+import { Artist, Item, ItemList, Track } from "./types";
 
 export async function getAccessToken(code: string): Promise<string> {
   const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -27,18 +27,30 @@ function getAccessTokenParams(code: string): URLSearchParams {
   return params;
 }
 
-export async function getTopArtists(token: string): Promise<ArtistList> {
-  return await getTopItems(token, "artists");
+export async function getTopArtists(token: string): Promise<Artist[]> {
+  return (await getTopItems("artists", token)) as Artist[];
 }
 
-export async function getTopTracks(token: string): Promise<TrackList> {
-  return await getTopItems(token, "tracks");
+export async function getTopTracks(token: string): Promise<Track[]> {
+  return (await getTopItems("tracks", token)) as Track[];
 }
 
-async function getTopItems(token: string, item: string): Promise<ItemList> {
-  const result = await fetch(`${SPOTIFY_API_BASE_URL}/me/top/${item}`, {
+async function getTopItems(item: string, token: string): Promise<Item[]> {
+  const url = new URL(`${SPOTIFY_API_BASE_URL}/me/top/${item}`);
+  url.searchParams.append("limit", "50");
+
+  const response: ItemList = await sendTopItemRequest(url.toString(), token);
+  return response.items;
+}
+
+async function sendTopItemRequest(
+  url: string,
+  token: string
+): Promise<ItemList> {
+  const result = await fetch(url, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
+
   return result.json();
 }

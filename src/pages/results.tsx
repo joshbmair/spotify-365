@@ -21,12 +21,8 @@ export default function Results(): JSX.Element {
         return;
       }
 
-      getTopArtists(token).then((artists) =>
-        setTopArtists(artists.items as Artist[])
-      );
-      getTopTracks(token).then((tracks) =>
-        setTopTracks(tracks.items as Track[])
-      );
+      getTopArtists(token).then((artists) => setTopArtists(artists));
+      getTopTracks(token).then((tracks) => setTopTracks(tracks));
     });
   }, []);
 

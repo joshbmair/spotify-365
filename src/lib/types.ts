@@ -20,6 +20,7 @@ export interface Item {
 
 export interface ItemList {
   items: Item[];
+  next: string | null;
 }
 
 export interface Track extends Item {
