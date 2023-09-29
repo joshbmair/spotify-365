@@ -1,4 +1,9 @@
-import { BASE_URL, CLIENT_ID, SPOTIFY_API_BASE_URL } from "./constants";
+import {
+  BASE_URL,
+  CLIENT_ID,
+  ITEM_COUNT_LIMIT,
+  SPOTIFY_API_BASE_URL,
+} from "./constants";
 import { Artist, Item, ItemList, Track } from "./types";
 
 export async function getAccessToken(code: string): Promise<string> {
@@ -37,7 +42,7 @@ export async function getTopTracks(token: string): Promise<Track[]> {
 
 async function getTopItems(item: string, token: string): Promise<Item[]> {
   const url = new URL(`${SPOTIFY_API_BASE_URL}/me/top/${item}`);
-  url.searchParams.append("limit", "50");
+  url.searchParams.append("limit", `${ITEM_COUNT_LIMIT}`);
 
   const response: ItemList = await sendTopItemRequest(url.toString(), token);
   return response.items;

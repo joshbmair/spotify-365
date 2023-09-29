@@ -21,7 +21,7 @@ export default function TopItemsCard(props: TopItemsProps): JSX.Element {
         <Card.Text>
           <img className={styles.image} src={topItemImage.url} alt="Top item" />
           <ol>
-            {items.slice(0, 5).map((item, index) => {
+            {items.map((item, index) => {
               return <li key={index}>{item.name}</li>;
             })}
           </ol>
